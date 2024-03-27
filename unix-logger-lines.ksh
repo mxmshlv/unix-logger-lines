@@ -32,7 +32,7 @@ prevent_function() {
 prevent_function
 
 # Store LOG_FILE variable and get its lines number
-LOG_FILE=$(find /PATH/TO/LOG/DIRECTORY -type f -name 'LOGGFILENAME*' -print | xargs ls -ltr | tail -n 1 | awk '{print $9}')
+LOG_FILE=$(find /PATH/TO/LOG/DIRECTORY -type f -name 'LOGFILENAME*' -print | xargs ls -ltr | tail -n 1 | awk '{print $9}')
 old_lines=$(wc -l <"$LOG_FILE")
 
 # Adding the tag to logger messages
@@ -42,7 +42,7 @@ APP_NAME="SOME_TAG"
 main_function() {
 
     # Get the latest log file and store another NEW_LOG_FILE variable
-    NEW_LOG_FILE=$(find /PATH/TO/LOG/DIRECTORY -type f -name 'LOGGFILENAME*' -print | xargs ls -ltr | tail -n 1 | awk '{print $9}')
+    NEW_LOG_FILE=$(find /PATH/TO/LOG/DIRECTORY -type f -name 'LOGFILENAME*' -print | xargs ls -ltr | tail -n 1 | awk '{print $9}')
 
     if [ "$NEW_LOG_FILE" = "$LOG_FILE" ]; then
         # Get the current lines number of the log file
