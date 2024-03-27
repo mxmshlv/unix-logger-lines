@@ -4,7 +4,7 @@
 prevent_function() {
 
     # Lock file path
-    LOCK_FILE="/apps/dccs/boltux/log/logger/dccs_alog/logger_script.pid"
+    LOCK_FILE="/PATH/TO/logger_script.pid"
 
     # Check if another instance of the script is running
     if [ -f "$LOCK_FILE" ]; then
@@ -32,17 +32,17 @@ prevent_function() {
 prevent_function
 
 # Store LOG_FILE variable and get its lines number
-LOG_FILE=$(find /apps/dccs/boltux/log/ -type f -name 'dccs_alog*' -print | xargs ls -ltr | tail -n 1 | awk '{print $9}')
+LOG_FILE=$(find /PATH/TO/LOG/DIRECTORY -type f -name 'LOGGFILENAME*' -print | xargs ls -ltr | tail -n 1 | awk '{print $9}')
 old_lines=$(wc -l <"$LOG_FILE")
 
 # Adding the tag to logger messages
-APP_NAME="boltux_alog"
+APP_NAME="SOME_TAG"
 
 # Main checking and logger function
 main_function() {
 
     # Get the latest log file and store another NEW_LOG_FILE variable
-    NEW_LOG_FILE=$(find /apps/dccs/boltux/log/ -type f -name 'dccs_alog*' -print | xargs ls -ltr | tail -n 1 | awk '{print $9}')
+    NEW_LOG_FILE=$(find /PATH/TO/LOG/DIRECTORY -type f -name 'LOGGFILENAME*' -print | xargs ls -ltr | tail -n 1 | awk '{print $9}')
 
     if [ "$NEW_LOG_FILE" = "$LOG_FILE" ]; then
         # Get the current lines number of the log file
